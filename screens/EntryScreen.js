@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TextInput, Card, Button, IconButton, Title, MD3Colors } from 'react-native-paper';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import { StyleSheet, View, Text, Alert, ScrollView } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import NumericInput from 'react-native-numeric-input'
@@ -40,7 +40,11 @@ const EntryScreen = () => {
 
 
   const [kmstart, setKmstart] = useState(0)
+  const [kmstart_val, setKmstart_val] = useState(0)
+  let KmStart = 0;
   const [kmstart1, setKmstart1] = useState(0)
+  const [kmstart1_val, setKmstart1_val] = useState(0)
+  let KmStart1 = 0;
   // useEffect(() => {
   //   db.transaction((tx) => {
   //     tx.executeSql(
@@ -55,7 +59,7 @@ const EntryScreen = () => {
   // })
 
   return (
-    <View style={{ padding: 20}}>
+    <ScrollView style={{ padding: 20, marginBottom: 70, paddingBottom: 50}}>
       <TextInput
       mode="flat"
       label="-Data-"
@@ -93,9 +97,11 @@ const EntryScreen = () => {
           const decimalPart = parts[1];
           const thousands = /\B(?=(\d{3})+(?!\d))/g;
           setKmstart(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart_val(value)
+          KmStart = value;
         }} 
         minValue={0} 
-        value={kmstart}
+        value={kmstart_val}
         rounded 
         onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
         rightButtonBackgroundColor='#00469A' 
@@ -109,13 +115,15 @@ const EntryScreen = () => {
         />
         <Text style={{fontWeight: 'bold', fontSize: 16}}>Km FINAL: {kmstart1}</Text>
         <NumericInput
-        value={kmstart1}
+        value={kmstart1_val}
         onChange={value => {
           var parts = value.toString().split(".");
           const numberPart = parts[0];
           const decimalPart = parts[1];
           const thousands = /\B(?=(\d{3})+(?!\d))/g;
           setKmstart1(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart1_val(value);
+          KmStart1 = value;
         }} 
         minValue={0}
         rounded 
@@ -131,7 +139,7 @@ const EntryScreen = () => {
         />
 
 
-      <View style={{display:cardAdd_show}}>
+      <View style={{display:cardAdd_show, paddingTop: 10}}>
         <Title style={{paddingBottom: 10}}>Interval orar 2:</Title>
         <Button title="Show Date Picker" onPress={()=>{setDatePickerVisibility3(true)}} style={{marginBottom: 5}} dark="true" textColor="white" buttonColor="#00469A">Ora Start - {time3}</Button>
         <DateTimePickerModal
@@ -147,6 +155,55 @@ const EntryScreen = () => {
           mode="time"
           onConfirm={(date2) => {setSelectedDate4(date2);setDatePickerVisibility4(false);setTime4_changed(date2.getHours().toString() + ":" + date2.getMinutes().toString());time4Official=(date2.getHours().toString() + ":" + date2.getMinutes().toString());console.warn(time4Official)}}
           onCancel={() => {setDatePickerVisibility4(false)}}
+        />
+
+<Text style={{fontWeight: 'bold', fontSize: 16}}>Km START: {kmstart}</Text>
+        <NumericInput 
+        onChange={value => {
+          var parts = value.toString().split(".");
+          const numberPart = parts[0];
+          const decimalPart = parts[1];
+          const thousands = /\B(?=(\d{3})+(?!\d))/g;
+          setKmstart(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart_val(value)
+          KmStart = value;
+        }} 
+        minValue={0} 
+        value={kmstart_val}
+        rounded 
+        onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
+        rightButtonBackgroundColor='#00469A' 
+        leftButtonBackgroundColor='#277BE1'
+        iconStyle={{ color: 'white' }} 
+        textColor='black'
+        valueType='real'
+        totalWidth={160} 
+        totalHeight={40}
+        separatorWidth={2}
+        />
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>Km FINAL: {kmstart1}</Text>
+        <NumericInput
+        value={kmstart1_val}
+        onChange={value => {
+          var parts = value.toString().split(".");
+          const numberPart = parts[0];
+          const decimalPart = parts[1];
+          const thousands = /\B(?=(\d{3})+(?!\d))/g;
+          setKmstart1(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart1_val(value);
+          KmStart1 = value;
+        }} 
+        minValue={0}
+        rounded 
+        onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
+        rightButtonBackgroundColor='#00469A' 
+        leftButtonBackgroundColor='#277BE1'
+        iconStyle={{ color: 'white' }} 
+        textColor='black'
+        valueType='real'
+        totalWidth={160} 
+        totalHeight={40} 
+        separatorWidth={2}
         />
       </View>
       <IconButton icon="minus" mode="contained" iconColor="white" containerColor="#D41212" style={{alignSelf: 'flex-end', width: 50, marginTop: -5, display: buttonCancel_show}} onPress={() => {
@@ -165,8 +222,13 @@ const EntryScreen = () => {
       }} style={{alignSelf: 'flex-end',display:buttonAdd_show, width:240, align: 'right', marginTop: 5}}>
       Adauga Interval orar 2
     </Button>
-          
-    </View>
+    
+
+
+
+
+    <View style={{height:50}}></View>
+    </ScrollView>
   );
 }
 

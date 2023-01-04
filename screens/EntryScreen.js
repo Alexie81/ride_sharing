@@ -45,6 +45,13 @@ const EntryScreen = () => {
   const [kmstart1, setKmstart1] = useState(0)
   const [kmstart1_val, setKmstart1_val] = useState(0)
   let KmStart1 = 0;
+  //'interval orar 2'
+  const [kmstart2, setKmstart2] = useState(0)
+  const [kmstart2_val, setKmstart2_val] = useState(0)
+  let KmStart2 = 0;
+  const [kmstart3, setKmstart3] = useState(0)
+  const [kmstart3_val, setKmstart3_val] = useState(0)
+  let KmStart3 = 0;
   // useEffect(() => {
   //   db.transaction((tx) => {
   //     tx.executeSql(
@@ -157,19 +164,19 @@ const EntryScreen = () => {
           onCancel={() => {setDatePickerVisibility4(false)}}
         />
 
-<Text style={{fontWeight: 'bold', fontSize: 16}}>Km START: {kmstart}</Text>
+<Text style={{fontWeight: 'bold', fontSize: 16}}>Km START: {kmstart2}</Text>
         <NumericInput 
         onChange={value => {
           var parts = value.toString().split(".");
           const numberPart = parts[0];
           const decimalPart = parts[1];
           const thousands = /\B(?=(\d{3})+(?!\d))/g;
-          setKmstart(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
-          setKmstart_val(value)
+          setKmstart2(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart2_val(value)
           KmStart = value;
         }} 
         minValue={0} 
-        value={kmstart_val}
+        value={kmstart2_val}
         rounded 
         onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
         rightButtonBackgroundColor='#00469A' 
@@ -181,17 +188,17 @@ const EntryScreen = () => {
         totalHeight={40}
         separatorWidth={2}
         />
-        <Text style={{fontWeight: 'bold', fontSize: 16}}>Km FINAL: {kmstart1}</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>Km FINAL: {kmstart3}</Text>
         <NumericInput
-        value={kmstart1_val}
+        value={kmstart3_val}
         onChange={value => {
           var parts = value.toString().split(".");
           const numberPart = parts[0];
           const decimalPart = parts[1];
           const thousands = /\B(?=(\d{3})+(?!\d))/g;
-          setKmstart1(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
-          setKmstart1_val(value);
-          KmStart1 = value;
+          setKmstart3(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart3_val(value);
+          KmStart3 = value;
         }} 
         minValue={0}
         rounded 

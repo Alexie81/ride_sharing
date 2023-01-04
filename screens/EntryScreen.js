@@ -173,7 +173,7 @@ const EntryScreen = () => {
           const thousands = /\B(?=(\d{3})+(?!\d))/g;
           setKmstart2(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
           setKmstart2_val(value)
-          KmStart = value;
+          KmStart2 = value;
         }} 
         minValue={0} 
         value={kmstart2_val}

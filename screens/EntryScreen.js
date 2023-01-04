@@ -3,6 +3,7 @@ import { TextInput, Card, Button, IconButton, Title, MD3Colors } from 'react-nat
 import { StyleSheet, View, Text, Alert } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import NumericInput from 'react-native-numeric-input'
 import * as SQLite from 'expo-sqlite';
 
 const db = SQLite.openDatabase('database')
@@ -36,6 +37,10 @@ const EntryScreen = () => {
   const [buttonCancel_show, setButtonCancel_show] = useState('none');
   const [cardAdd_show, setCardAdd_show] = useState('none');
   let interval2 = false;
+
+
+  const [kmstart, setKmstart] = useState(0)
+  const [kmstart1, setKmstart1] = useState(0)
   // useEffect(() => {
   //   db.transaction((tx) => {
   //     tx.executeSql(
@@ -48,8 +53,6 @@ const EntryScreen = () => {
   //     tx.executeSql('select * from customers', [], (_, { rows }) => console.log(JSON.stringify(rows)))
   //   })
   // })
-
-  
 
   return (
     <View style={{ padding: 20}}>
@@ -82,6 +85,52 @@ const EntryScreen = () => {
           onConfirm={(date2) => {setSelectedDate2(date2);setDatePickerVisibility2(false);setTime2_changed(date2.getHours().toString() + ":" + date2.getMinutes().toString());time2Official=(date2.getHours().toString() + ":" + date2.getMinutes().toString());console.warn(time2Official)}}
           onCancel={() => {setDatePickerVisibility2(false)}}
         />
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>Km START: {kmstart}</Text>
+        <NumericInput 
+        onChange={value => {
+          var parts = value.toString().split(".");
+          const numberPart = parts[0];
+          const decimalPart = parts[1];
+          const thousands = /\B(?=(\d{3})+(?!\d))/g;
+          setKmstart(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+        }} 
+        minValue={0} 
+        value={kmstart}
+        rounded 
+        onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
+        rightButtonBackgroundColor='#00469A' 
+        leftButtonBackgroundColor='#277BE1'
+        iconStyle={{ color: 'white' }} 
+        textColor='black'
+        valueType='real'
+        totalWidth={160} 
+        totalHeight={40}
+        separatorWidth={2}
+        />
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>Km FINAL: {kmstart1}</Text>
+        <NumericInput
+        value={kmstart1}
+        onChange={value => {
+          var parts = value.toString().split(".");
+          const numberPart = parts[0];
+          const decimalPart = parts[1];
+          const thousands = /\B(?=(\d{3})+(?!\d))/g;
+          setKmstart1(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+        }} 
+        minValue={0}
+        rounded 
+        onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
+        rightButtonBackgroundColor='#00469A' 
+        leftButtonBackgroundColor='#277BE1'
+        iconStyle={{ color: 'white' }} 
+        textColor='black'
+        valueType='real'
+        totalWidth={160} 
+        totalHeight={40} 
+        separatorWidth={2}
+        />
+
+
       <View style={{display:cardAdd_show}}>
         <Title style={{paddingBottom: 10}}>Interval orar 2:</Title>
         <Button title="Show Date Picker" onPress={()=>{setDatePickerVisibility3(true)}} style={{marginBottom: 5}} dark="true" textColor="white" buttonColor="#00469A">Ora Start - {time3}</Button>

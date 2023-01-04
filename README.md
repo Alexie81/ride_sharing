@@ -16,7 +16,7 @@
 
 > Using the application
 
->>> This application is specially made for cab and uber drivers who want to know exactly their weekly and even daily profit based on very well prepared reports and all the necessary expenses to run a race in optimal conditions. This application is compatible with both Bolt and Uber. It has a friendly and very simple interface that is available to everyone regardless of the knowledge they have or don't have about phones.
+>>> This application is specially made for bolt and uber drivers who want to know exactly their weekly and even daily profit based on very well prepared reports and all the necessary expenses to run a race in optimal conditions. This application is compatible with both Bolt and Uber. It has a friendly and very simple interface that is available to everyone regardless of the knowledge they have or don't have about phones.
 
 > Example Configuring (Dev)
 

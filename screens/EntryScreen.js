@@ -741,15 +741,22 @@ const EntryScreen = () => {
         </Card.Content>
       </Card>
 
-      <Button 
-      mode="contained"
-      style={{ marginBottom: 5, marginTop: 30, padding: 5 }}
-      dark="true"
-      textColor="white"
-      buttonColor="#00469A">
+      <Button
+        icon="content-save-check-outline"
+        mode="contained"
+        textColor="white"
+        buttonColor="#00469A"
+        onPress={() => {
+          console.log("Save pressed")
+        }}
+        style={{
+          marginTop: 25,
+          padding: 5
+        }}
+      >
         Salveaza
       </Button>
-      
+
       <View style={{ height: 50 }}></View>
     </ScrollView>
 

@@ -229,6 +229,72 @@ const EntryScreen = () => {
       }} style={{alignSelf: 'flex-end',display:buttonAdd_show, width:240, align: 'right', marginTop: 5}}>
       Adauga Interval orar 2
     </Button>
+
+    <Card style={{marginTop: 10}}>
+      <Card.Content>
+      <Title>Combustibil</Title>
+      <Card>
+        <Card.Content>
+        <View style={{flexDirection: "row", flexWrap: "wrap"}}>
+          <Text style={{width:140}}>Cantitate(L)</Text>
+          <Text style={{width:140}}>Valoare(lei)</Text>
+        </View>
+      <View style={{flexDirection: "row", flexWrap: "wrap"}}>
+      <NumericInput
+        value={kmstart3_val}
+        onChange={value => {
+          var parts = value.toString().split(".");
+          const numberPart = parts[0];
+          const decimalPart = parts[1];
+          const thousands = /\B(?=(\d{3})+(?!\d))/g;
+          setKmstart3(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart3_val(value);
+          KmStart3 = value;
+        }} 
+        minValue={0}
+        rounded 
+        onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
+        rightButtonBackgroundColor='#00469A' 
+        leftButtonBackgroundColor='#277BE1'
+        iconStyle={{ color: 'white' }} 
+        textColor='black'
+        valueType='real'
+        totalWidth={140} 
+        totalHeight={40} 
+        separatorWidth={2}
+        />
+        <NumericInput
+        value={kmstart3_val}
+        onChange={value => {
+          var parts = value.toString().split(".");
+          const numberPart = parts[0];
+          const decimalPart = parts[1];
+          const thousands = /\B(?=(\d{3})+(?!\d))/g;
+          setKmstart3(numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : ""));
+          setKmstart3_val(value);
+          KmStart3 = value;
+        }} 
+        minValue={0}
+        rounded 
+        onLimitReached={(isMax,msg) => console.log(isMax,msg)} 
+        rightButtonBackgroundColor='#00469A' 
+        leftButtonBackgroundColor='#277BE1'
+        iconStyle={{ color: 'white' }} 
+        textColor='black'
+        valueType='real'
+        totalWidth={140} 
+        totalHeight={40} 
+        separatorWidth={2}
+        />
+        </View>
+        <IconButton icon="minus" mode="contained" iconColor="white" containerColor="#D41212" style={{alignSelf: 'flex-end', width: 40, marginBottom: -40}}/>
+        <Button></Button>
+        </Card.Content>
+        </Card>
+
+        <IconButton icon="plus-circle" mode="contained" iconColor="white" containerColor="#00469A" style={{alignSelf: 'flex-end', width: 40, marginTop: 20}}/>
+      </Card.Content>
+    </Card>
     
 
 

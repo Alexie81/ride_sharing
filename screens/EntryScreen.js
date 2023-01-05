@@ -741,6 +741,15 @@ const EntryScreen = () => {
         </Card.Content>
       </Card>
 
+      <Button 
+      mode="contained"
+      style={{ marginBottom: 5, marginTop: 30, padding: 5 }}
+      dark="true"
+      textColor="white"
+      buttonColor="#00469A">
+        Salveaza
+      </Button>
+      
       <View style={{ height: 50 }}></View>
     </ScrollView>
 

@@ -163,8 +163,12 @@ const EntryScreen = () => {
           />
         </Card.Content>
       </Card>
-      <Card style={{ padding: 4, marginTop: 10}}>
+      <Card style={{ marginTop: 10}}>
         <Card.Content>
+          <Card>
+            <Card.Content>
+
+            
           <Title style={{ paddingBottom: 10 }}>Interval orar 1:</Title>
           <Button
             title="Show Date Picker"
@@ -228,9 +232,17 @@ const EntryScreen = () => {
               setDatePickerVisibility2(false);
             }}
           />
-          <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+          <View style={{flexDirection:'row', flexWrap: "wrap"}}>
+          <Text style={{ fontWeight: "bold", fontSize: 16, width: "50%" }}>
             Km START: {kmstart}
           </Text>
+          <Text style={{ fontWeight: "bold", fontSize: 16, width: "50%" }}>
+            Km FINAL: {kmstart1}
+          </Text>
+          </View>
+
+          <View style={{flexDirection:'row', flexWrap: "wrap"}}>
+          
           <NumericInput
             onChange={(value) => {
               var parts = value.toString().split(".");
@@ -253,13 +265,12 @@ const EntryScreen = () => {
             iconStyle={{ color: "white" }}
             textColor="black"
             valueType="real"
-            totalWidth={160}
+            totalWidth={150}
+            containerStyle={{width: "50%"}}
             totalHeight={40}
             separatorWidth={2}
           />
-          <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-            Km FINAL: {kmstart1}
-          </Text>
+          
           <NumericInput
             value={kmstart1_val}
             onChange={(value) => {
@@ -282,12 +293,18 @@ const EntryScreen = () => {
             iconStyle={{ color: "white" }}
             textColor="black"
             valueType="real"
-            totalWidth={160}
+            totalWidth={150}
+            containerStyle={{width: "50%"}}
             totalHeight={40}
             separatorWidth={2}
           />
+          </View>
+          </Card.Content>
+          </Card>
 
           <View style={{ display: cardAdd_show, paddingTop: 10 }}>
+          <Card>
+            <Card.Content>
             <Title style={{ paddingBottom: 10 }}>Interval orar 2:</Title>
             <Button
               title="Show Date Picker"
@@ -355,10 +372,15 @@ const EntryScreen = () => {
                 setDatePickerVisibility4(false);
               }}
             />
-
-            <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+          <View style={{flexDirection:'row', flexWrap: "wrap"}}>
+            <Text style={{ fontWeight: "bold", fontSize: 16, width: "50%" }}>
               Km START: {kmstart2}
             </Text>
+            <Text style={{ fontWeight: "bold", fontSize: 16, width: "50%" }}>
+              Km FINAL: {kmstart3}
+            </Text>
+            </View>
+            <View style={{flexDirection:'row', flexWrap: "wrap"}}>
             <NumericInput
               onChange={(value) => {
                 var parts = value.toString().split(".");
@@ -381,13 +403,12 @@ const EntryScreen = () => {
               iconStyle={{ color: "white" }}
               textColor="black"
               valueType="real"
-              totalWidth={160}
+              containerStyle={{width: "50%"}}
+              totalWidth={150}
               totalHeight={40}
               separatorWidth={2}
             />
-            <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-              Km FINAL: {kmstart3}
-            </Text>
+            
             <NumericInput
               value={kmstart3_val}
               onChange={(value) => {
@@ -410,10 +431,14 @@ const EntryScreen = () => {
               iconStyle={{ color: "white" }}
               textColor="black"
               valueType="real"
-              totalWidth={160}
+              containerStyle={{width: "50%"}}
+              totalWidth={150}
               totalHeight={40}
               separatorWidth={2}
             />
+            </View>
+            </Card.Content>
+            </Card>
           </View>
           <IconButton
             icon="minus"
@@ -423,7 +448,7 @@ const EntryScreen = () => {
             style={{
               alignSelf: "flex-end",
               width: 50,
-              marginTop: -5,
+              marginTop: 10,
               display: buttonCancel_show,
             }}
             onPress={() => {

@@ -107,6 +107,31 @@ const EntryScreen = () => {
     setComb_val(deleteVal)
   }
 
+  //Uber
+    const [nrcurseUber, setNrCurseUber] = useState(0);
+    const [nrcurseUber_val, setNrCurseUber_val] = useState(0);
+    let nrCurseUber = 0;
+    //Bani cash
+    const [banicashUber, setBaniCashUber] = useState(0);
+    const [banicashUber_val, setBaniCashUber_val] = useState(0);
+    let baniCashUber = 0;
+    //Incasari totale NET
+    const [incasariUber, setIncasariUber] = useState(0);
+    const [incasariUber_val, setIncasariUber_val] = useState(0);
+    let incasariUberNET = 0;
+
+  //Bolt
+    const [nrcurseBolt, setNrCurseBolt] = useState(0);
+    const [nrcurseBolt_val, setNrCurseBolt_val] = useState(0);
+    let nrCurseBolt = 0;
+    //Bani cash
+    const [banicashBolt, setBaniCashBolt] = useState(0);
+    const [banicashBolt_val, setBaniCashBolt_val] = useState(0);
+    let baniCashBolt = 0;
+    //Incasari totale NET
+    const [incasariBolt, setIncasariBolt] = useState(0);
+    const [incasariBolt_val, setIncasariBolt_val] = useState(0);
+    let incasariBoltNET = 0;
 
   // //--------------------------DATABASE:
   // useEffect(() => {
@@ -124,17 +149,21 @@ const EntryScreen = () => {
 
   return (
     <ScrollView style={{ padding: 20, marginBottom: 70, paddingBottom: 50 }}>
-      <TextInput
-        mode="flat"
-        label="-Data-"
-        value={date_form}
-        activeUnderlineColor="blue"
-        underlineColor="blue"
-        outlineColor="white"
-        style={{ backgroundColor: "#A9C9F0", marginBottom: 5 }}
-        disabled="true"
-      />
-      <Card style={{ padding: 4 }}>
+      <Card style={{ padding: 4}} >
+        <Card.Content>
+          <TextInput
+            mode="flat"
+            label="-Data-"
+            value={date_form}
+            activeUnderlineColor="blue"
+            underlineColor="blue"
+            outlineColor="white"
+            style={{ backgroundColor: "#A9C9F0", marginBottom: 5 }}
+            disabled="true"
+          />
+        </Card.Content>
+      </Card>
+      <Card style={{ padding: 4, marginTop: 10}}>
         <Card.Content>
           <Title style={{ paddingBottom: 10 }}>Interval orar 1:</Title>
           <Button
@@ -445,8 +474,8 @@ const EntryScreen = () => {
               <Card style={{marginTop: 10}} key={i.toString()}>
             <Card.Content>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                <Text style={{ width: 140 }}>Cantitate(L)</Text>
-                <Text style={{ width: 140 }}>Valoare(lei)</Text>
+                <Text style={{ width: "50%" }}>Cantitate(L)</Text>
+                <Text style={{ width: "50%" }}>Valoare(lei)</Text>
               </View>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 <NumericInput
@@ -463,9 +492,9 @@ const EntryScreen = () => {
                   iconStyle={{ color: "white" }}
                   textColor="black"
                   valueType="real"
-                  totalWidth={140}
                   totalHeight={40}
                   separatorWidth={2}
+                  containerStyle={{width:"50%"}}
                 />
                 <NumericInput
                   value={Number(dataVal[i])}
@@ -480,7 +509,7 @@ const EntryScreen = () => {
                   iconStyle={{ color: "white" }}
                   textColor="black"
                   valueType="real"
-                  totalWidth={140}
+                  containerStyle={{width:"50%"}}
                   totalHeight={40}
                   separatorWidth={2}
                 />
@@ -490,76 +519,6 @@ const EntryScreen = () => {
             )
 
           })}
-          {/* <Card>
-            <Card.Content>
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                <Text style={{ width: 140 }}>Cantitate(L)</Text>
-                <Text style={{ width: 140 }}>Valoare(lei)</Text>
-              </View>
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                <NumericInput
-                  value={kmstart3_val}
-                  onChange={(value) => {
-                    var parts = value.toString().split(".");
-                    const numberPart = parts[0];
-                    const decimalPart = parts[1];
-                    const thousands = /\B(?=(\d{3})+(?!\d))/g;
-                    setKmstart3(
-                      numberPart.replace(thousands, ",") +
-                        (decimalPart ? "." + decimalPart : "")
-                    );
-                    setKmstart3_val(value);
-                    KmStart3 = value;
-                  }}
-                  minValue={0}
-                  rounded
-                  onLimitReached={(isMax, msg) => console.log(isMax, msg)}
-                  rightButtonBackgroundColor="#00469A"
-                  leftButtonBackgroundColor="#277BE1"
-                  iconStyle={{ color: "white" }}
-                  textColor="black"
-                  valueType="real"
-                  totalWidth={140}
-                  totalHeight={40}
-                  separatorWidth={2}
-                />
-                <NumericInput
-                  value={kmstart3_val}
-                  onChange={(value) => {
-                    var parts = value.toString().split(".");
-                    const numberPart = parts[0];
-                    const decimalPart = parts[1];
-                    const thousands = /\B(?=(\d{3})+(?!\d))/g;
-                    setKmstart3(
-                      numberPart.replace(thousands, ",") +
-                        (decimalPart ? "." + decimalPart : "")
-                    );
-                    setKmstart3_val(value);
-                    KmStart3 = value;
-                  }}
-                  minValue={0}
-                  rounded
-                  onLimitReached={(isMax, msg) => console.log(isMax, msg)}
-                  rightButtonBackgroundColor="#00469A"
-                  leftButtonBackgroundColor="#277BE1"
-                  iconStyle={{ color: "white" }}
-                  textColor="black"
-                  valueType="real"
-                  totalWidth={140}
-                  totalHeight={40}
-                  separatorWidth={2}
-                />
-              </View>
-              <IconButton
-                icon="minus"
-                mode="contained"
-                iconColor="white"
-                containerColor="#D41212"
-                style={{ alignSelf: "flex-end", width: 40, marginBottom: -40 }}
-              />
-              <Button></Button>
-            </Card.Content>
-          </Card> */}
             <IconButton
                 icon="minus"
                 mode="contained"
@@ -571,6 +530,214 @@ const EntryScreen = () => {
                 }}
               />
           <IconButton icon="plus-circle" mode="contained"  iconColor="white" containerColor="#00469A" style={{ alignSelf: "flex-end", width: 40, marginTop: 20 }} onPress={()=> handleAddCombVal()}/>
+        </Card.Content>
+      </Card>
+
+      <Card style={{backgroundColor: "#E3E3E3", marginTop: 10, padding:4}}>
+        <Card.Content>
+                <Title>Uber:</Title>
+                <View style={{flexDirection: 'row', flexWrap: "wrap", marginTop: 10}}>
+                  <Text style={{ fontWeight: "bold", fontSize: 15, width: "50%" }}>
+                    Nr. Curse: {nrcurseUber}
+                  </Text>
+                  <Text style={{ fontWeight: "bold", fontSize: 15,  width: "50%" }}>
+                    Bani Cash: {banicashUber} Lei
+                  </Text>
+                </View>
+                <View style={{flexDirection: 'row', flexWrap: "wrap", marginTop: 10}}>
+                
+                <NumericInput
+              value={nrcurseUber_val}
+              onChange={(value) => {
+                var parts = value.toString().split(".");
+                const numberPart = parts[0];
+                const decimalPart = parts[1];
+                const thousands = /\B(?=(\d{3})+(?!\d))/g;
+                setNrCurseUber(
+                  numberPart.replace(thousands, ",") +
+                    (decimalPart ? "." + decimalPart : "")
+                );
+                setNrCurseUber_val(value);
+                nrCurseUber = value;
+                console.log(nrCurseUber)
+              }}
+              minValue={0}
+              rounded
+              onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+              rightButtonBackgroundColor="#353535"
+              leftButtonBackgroundColor="#737373"
+              iconStyle={{ color: "white" }}
+              textColor="black"
+              valueType="real"
+              containerStyle={{width:"50%"}}
+              totalHeight={40}
+              separatorWidth={2}
+            />
+
+              <NumericInput
+              value={banicashUber_val}
+              onChange={(value) => {
+                var parts = value.toString().split(".");
+                const numberPart = parts[0];
+                const decimalPart = parts[1];
+                const thousands = /\B(?=(\d{3})+(?!\d))/g;
+                setBaniCashUber(
+                  numberPart.replace(thousands, ",") +
+                    (decimalPart ? "." + decimalPart : "")
+                );
+                setBaniCashUber_val(value);
+                baniCashUber = value;
+              }}
+              minValue={0}
+              rounded
+              onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+              rightButtonBackgroundColor="#353535"
+              leftButtonBackgroundColor="#737373"
+              iconStyle={{ color: "white" }}
+              textColor="black"
+              valueType="real"
+              containerStyle={{width:"50%"}}
+              totalHeight={40}
+              separatorWidth={2}
+            />
+            </View>
+
+            <View style={{marginTop: 15}}>
+            <Text style={{ fontWeight: "bold", fontSize: 15,  alignSelf: 'center' }}>
+                    Incasari Totale NET: {incasariUber} Lei
+                  </Text>
+              <NumericInput
+                value={incasariUber_val}
+                onChange={(value) => {
+                  var parts = value.toString().split(".");
+                  const numberPart = parts[0];
+                  const decimalPart = parts[1];
+                  const thousands = /\B(?=(\d{3})+(?!\d))/g;
+                  setIncasariUber(
+                    numberPart.replace(thousands, ",") +
+                      (decimalPart ? "." + decimalPart : "")
+                  );
+                  setIncasariUber_val(value);
+                  incasariUberNET = value;
+                }}
+                minValue={0}
+                rounded
+                onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+                rightButtonBackgroundColor="#353535"
+                leftButtonBackgroundColor="#737373"
+                iconStyle={{ color: "white" }}
+                textColor="black"
+                valueType="real"
+                containerStyle={{width:"50%", alignSelf: 'center'}}
+                totalHeight={40}
+                separatorWidth={2}
+              />
+            </View>
+        </Card.Content>
+      </Card>
+
+
+
+      <Card style={{backgroundColor: "#BFF5CC", marginTop: 10, padding:4}}>
+        <Card.Content>
+                <Title>Bolt:</Title>
+                <View style={{flexDirection: 'row', flexWrap: "wrap", marginTop: 10}}>
+                  <Text style={{ fontWeight: "bold", fontSize: 15, width: "50%" }}>
+                    Nr. Curse: {nrcurseBolt}
+                  </Text>
+                  <Text style={{ fontWeight: "bold", fontSize: 15,  width: "50%" }}>
+                    Bani Cash: {banicashBolt} Lei
+                  </Text>
+                </View>
+                <View style={{flexDirection: 'row', flexWrap: "wrap", marginTop: 10}}>
+                
+                <NumericInput
+              value={nrcurseBolt_val}
+              onChange={(value) => {
+                var parts = value.toString().split(".");
+                const numberPart = parts[0];
+                const decimalPart = parts[1];
+                const thousands = /\B(?=(\d{3})+(?!\d))/g;
+                setNrCurseBolt(
+                  numberPart.replace(thousands, ",") +
+                    (decimalPart ? "." + decimalPart : "")
+                );
+                setNrCurseBolt_val(value);
+                nrCurseBolt = value;
+                console.log(nrCurseBolt)
+              }}
+              minValue={0}
+              rounded
+              onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+              rightButtonBackgroundColor="#01B02D"
+              leftButtonBackgroundColor="#2AD755"
+              iconStyle={{ color: "white" }}
+              textColor="black"
+              valueType="real"
+              containerStyle={{width:"50%"}}
+              totalHeight={40}
+              separatorWidth={2}
+            />
+
+              <NumericInput
+              value={banicashBolt_val}
+              onChange={(value) => {
+                var parts = value.toString().split(".");
+                const numberPart = parts[0];
+                const decimalPart = parts[1];
+                const thousands = /\B(?=(\d{3})+(?!\d))/g;
+                setBaniCashBolt(
+                  numberPart.replace(thousands, ",") +
+                    (decimalPart ? "." + decimalPart : "")
+                );
+                setBaniCashBolt_val(value);
+                baniCashBolt = value;
+              }}
+              minValue={0}
+              rounded
+              onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+              rightButtonBackgroundColor="#01B02D"
+              leftButtonBackgroundColor="#2AD755"
+              iconStyle={{ color: "white" }}
+              textColor="black"
+              valueType="real"
+              containerStyle={{width:"50%"}}
+              totalHeight={40}
+              separatorWidth={2}
+            />
+            </View>
+
+            <View style={{marginTop: 15}}>
+            <Text style={{ fontWeight: "bold", fontSize: 15,  alignSelf: 'center' }}>
+                    Incasari Totale NET: {incasariBolt} Lei
+                  </Text>
+              <NumericInput
+                value={incasariBolt_val}
+                onChange={(value) => {
+                  var parts = value.toString().split(".");
+                  const numberPart = parts[0];
+                  const decimalPart = parts[1];
+                  const thousands = /\B(?=(\d{3})+(?!\d))/g;
+                  setIncasariBolt(
+                    numberPart.replace(thousands, ",") +
+                      (decimalPart ? "." + decimalPart : "")
+                  );
+                  setIncasariBolt_val(value);
+                  incasariBoltNET = value;
+                }}
+                minValue={0}
+                rounded
+                onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+                rightButtonBackgroundColor="#01B02D"
+                leftButtonBackgroundColor="#2AD755"
+                iconStyle={{ color: "white" }}
+                textColor="black"
+                valueType="real"
+                containerStyle={{width:"50%", alignSelf: 'center'}}
+                totalHeight={40}
+                separatorWidth={2}
+              />
+            </View>
         </Card.Content>
       </Card>
 
